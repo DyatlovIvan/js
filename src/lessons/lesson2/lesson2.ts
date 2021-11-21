@@ -22,6 +22,172 @@ console.log('lesson 2');
 // https://learn.javascript.ru/recursion
 // https://www.youtube.com/watch?v=Kuq6oIN3PH0
 
+
+// anonymous block, conditions, functions/class, loops, try/catch/finally, switch
+// {} - object literal do not create lexical block
+
+// let globalScope = {
+//     outerScope: null,
+//     f: 'Function',
+//     a: 30, // 10 -> 20 -> 30
+// }
+//
+// let a = 10;
+//
+// function f(arg: number) {
+//     let fScope = {
+//         outerScope: globalScope,
+//         arg: 10,
+//     };
+//
+//     a += 10;
+//     console.log(a);
+//     a += arg;
+// }
+//
+// f(10);
+//
+// console.log(a);
+
+
+
+
+
+// let globalScope = {
+//     outerScope: null,
+//     b: 10, // undefined -> 10
+//     f: 'Function',
+//     result: 'Function', // undefined -> 'Function'
+//     a: 50, // undefined -> 50
+// }
+//
+// let a;
+// var b = 10;
+//
+// function f(arg: number) {
+//     let fScope = {
+//         outerScope: globalScope,
+//         c: 60, // undefined -> 60
+//         innerFunc: 'Function',
+//         arg: 10,
+//     };
+//
+//     a = 50;
+//     console.log(b); //10
+//     var c = a + b;
+//     function innerFunc() {
+//         let innerFuncScope = {
+//             outerScope: fScope,
+//         };
+//
+//         console.log(c + arg); // 1) 70 2) 70
+//     }
+//     return innerFunc;
+// }
+//
+// var result = f(10);
+// result();
+// result();
+// console.log(a); // 50
+
+
+// let globalScope = {
+//     outerScope: null,
+//     c: 10,
+//     f: 'Function',
+//     a: 50,
+//     b: 60,
+// }
+//
+// {
+//     let anonymiusScope = {
+//         outerScope: globalScope,
+//         param: 10,
+//     };
+//
+//     let param = 10;
+//     var c = 10;
+//     //@ts-ignore
+//     function f(arg) {
+//         let fScope = {
+//             outerScope : anonymiusScope,
+//             arg: 50, // undefined -> 50
+//         }
+//         return arg + c;
+//     }
+// }
+//
+// let a = 50;
+// //@ts-ignore
+// let b = f(a);
+// if (b > 50) {
+//     let trueScope = {
+//         outerScope : globalScope,
+//         a: 80,
+//     };
+//
+//     let a = 80; // 80
+//     console.log(a);
+// } else {
+//     let a = 100;
+//     console.log(a);
+// }
+
+
+// let globalScope = {
+//     obj: 'Object'
+// }
+//
+// let obj =  {
+//     name: 'Evgen',
+//     sayName() {
+//         let sayNameScope = {
+//             outerScope: globalScope,
+//         };
+//
+//         //console.log(this.name);
+//         console.log(obj.name);
+//     }
+// };
+//
+// obj.sayName()
+
+
+
+///// Recursion
+
+// sumTo(1) = 1
+// sumTo(2) = 2 + 1 = 3
+// sumTo(3) = 3 + 2 + 1 = 6
+// sumTo(4) = 4 + 3 + 2 + 1 = 10
+// ...
+// sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050
+
+// function sumTo(n: number) {
+//     let result = 0;
+//     for (let i = 0; i <= n; i++) {
+//         result += i;
+//     }
+//     return result;
+//
+//     // let result = 0;
+//     // for (let i = 0; i <= n; i++)  result += i;
+//     // return result;
+// }
+
+// function sumTo(n: number): number {
+//     if (n === 1) return n;
+//     return n + sumTo(n - 1);
+// }
+
+// function sumTo(n: number, acc: number): number {
+//     if (n === 1) return n + acc;
+//     return sumTo(n - 1, n + acc);
+// }
+//
+// console.log(sumTo(3, 0));
+
+
 // Task 01
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
 const sum = (a:number)=>{
@@ -32,16 +198,51 @@ const sum = (a:number)=>{
 console.log(sum(3)(9))
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
-// const counter = makeCounter();
-// counter(); // 1
-// counter(); // 2
-// const counter2 = makeCounter();
-// counter2(); // 1
-// counter(); // 3
+const makeCounter = () =>{
+    let count:number = 0;
+    return function() {
+       return ++count
+    }
+}
+
+const counter = makeCounter();
+const counter2 = makeCounter();
+
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
+
+console.log(counter2()); // 1
+
 
 // Task 03
 // Переписать функцию из Task 02 так, что бы она принимала число в качестве аргумента и это число было стартовым значением счетчика
 // и возвращала следующий объект методов:
+
+const makeCounter02 = (num:number) =>{
+
+    return function action(use:string|number) {
+        if(use==='increase'){
+            return  num = num +1
+        }else if (use==='decrease'){
+            return   num = num -1
+        }else if (use==='reset'){
+            return  num = 0
+        }else{
+           if (typeof use==='number'){
+               return num = use
+           }
+        }
+    }
+}
+
+const action = makeCounter02(10);
+console.log(action('increase'))
+console.log(action('decrease'))
+console.log(action('reset'))
+console.log(action(100))
+
+
 // increase: +1
 // decrease: -1
 // reset: установить счетчик в 0;
