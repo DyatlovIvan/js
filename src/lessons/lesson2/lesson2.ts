@@ -1,3 +1,5 @@
+import {findAllByDisplayValue} from "@testing-library/react";
+
 console.log('lesson 2');
 
 // Lexical environment
@@ -20,10 +22,14 @@ console.log('lesson 2');
 // https://learn.javascript.ru/recursion
 // https://www.youtube.com/watch?v=Kuq6oIN3PH0
 
-
 // Task 01
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
-
+const sum = (a:number)=>{
+    return function (b:number) {
+        return a+b
+    }
+}
+console.log(sum(3)(9))
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
 // const counter = makeCounter();
