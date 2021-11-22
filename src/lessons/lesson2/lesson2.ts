@@ -23,6 +23,18 @@ console.log('lesson 2');
 // https://www.youtube.com/watch?v=Kuq6oIN3PH0
 
 
+function person() {
+    let name = 'Peter';
+
+    return function displayName() {
+        console.log(name);
+    };
+}
+
+let peter = person();
+peter();
+
+
 // anonymous block, conditions, functions/class, loops, try/catch/finally, switch
 // {} - object literal do not create lexical block
 
@@ -48,9 +60,6 @@ console.log('lesson 2');
 // f(10);
 //
 // console.log(a);
-
-
-
 
 
 // let globalScope = {
@@ -153,7 +162,6 @@ console.log('lesson 2');
 // obj.sayName()
 
 
-
 ///// Recursion
 
 // sumTo(1) = 1
@@ -190,18 +198,18 @@ console.log('lesson 2');
 
 // Task 01
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
-const sum = (a:number)=>{
-    return function (b:number) {
-        return a+b
+const sum = (a: number) => {
+    return function (b: number) {
+        return a + b
     }
 }
 console.log(sum(3)(9))
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
-const makeCounter = () =>{
-    let count:number = 0;
-    return function() {
-       return ++count
+const makeCounter = () => {
+    let count: number = 0;
+    return function () {
+        return ++count
     }
 }
 
@@ -219,19 +227,19 @@ console.log(counter2()); // 1
 // Переписать функцию из Task 02 так, что бы она принимала число в качестве аргумента и это число было стартовым значением счетчика
 // и возвращала следующий объект методов:
 
-const makeCounter02 = (num:number) =>{
+const makeCounter02 = (num: number) => {
 
-    return function action(use:string|number) {
-        if(use==='increase'){
-            return  num = num +1
-        }else if (use==='decrease'){
-            return   num = num -1
-        }else if (use==='reset'){
-            return  num = 0
-        }else{
-           if (typeof use==='number'){
-               return num = use
-           }
+    return function action(use: string | number) {
+        if (use === 'increase') {
+            return num = num + 1
+        } else if (use === 'decrease') {
+            return num = num - 1
+        } else if (use === 'reset') {
+            return num = 0
+        } else {
+            if (typeof use === 'number') {
+                return num = use
+            }
         }
     }
 }
@@ -263,8 +271,52 @@ console.log(action(100))
 // Task 05
 // решить все задачи по рекурсии которые даны в конце статьи https://learn.javascript.ru/recursion
 
+function pow(x: number, n: number): number {
+    if (n == 1) {
+        return x;
+    } else {
+        return x * pow(x, n - 1);
+    }
+}
+
+console.log((pow(2, 3)))
+
+const sumTo = (num: number): number => {
+    if (num === 1) {
+        return 1
+    } else {
+        return num + sumTo(num - 1)
+    }
+}
+console.log((sumTo(100)))
+
+
+const factorial = (num: number):number => {
+    if (num === 1) {
+        return 1
+    } else {
+        return num*(factorial (num-1))
+    }
+
+}
+console.log(factorial(5))
+
+function fib(n:number):number {
+   // return n<=1?n: fib(n-1) + fib(n-2)
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        let c = a + b;
+        a = b;
+        b = c;
+    }
+    return b;
+}
+debugger
+alert(fib(60));
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
 
 // just a plug
-export default () => {};
+export default () => {
+};
