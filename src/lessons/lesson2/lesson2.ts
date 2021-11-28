@@ -312,8 +312,7 @@ function fib(n:number):number {
     }
     return b;
 }
-debugger
-alert(fib(60));
+//alert(fib(60));
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
 
