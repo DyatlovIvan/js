@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import API from './API';
 import './lesson_3';
 
@@ -8,9 +8,33 @@ const Lesson3 = () => {
     const [searchNameByType, setSearchNameByType] = useState('');
     const [serachResultByType, setSerachResultByType] = useState('');
 
-    const searchFilm = () => {
-        API.searchFilmsByTitle(searchName)
+    // const searchFilm = () => {
+    //     API.searchFilmsByTitle(searchName)
+    //         .then(({ data }) => {
+    //             const { Response, Error, Search } = data;
+    //             Response === 'True' ? setSerachResult(JSON.stringify(Search)) : setSerachResult(Error);
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //             if (err) {
+    //                 alert('У тебя траблы с ключом, разберись!');
+    //             }
+    //         })
+    // };
+
+    const searchFilm = async () => {
+        try {
+            const {data} = await API.searchFilmsByTitle(searchName);
+            const {Response, Error, Search} = data;
+            Response === 'True' ? setSerachResult(JSON.stringify(Search)) : setSerachResult(Error);
+        } catch (e) {
+            console.log(e)
+            if (e) {
+                alert('У тебя траблы с ключом, разберись!');
+            }
+        }
     };
+
 
     const searchByType = (e: React.MouseEvent<HTMLButtonElement>) => {
         const type: string = e.currentTarget.dataset.t ? e.currentTarget.dataset.t : '';
@@ -31,7 +55,8 @@ const Lesson3 = () => {
 
             <div>
                 <h3><p>Search by type:</p></h3>
-                <input type="text" value={searchNameByType} onChange={(e) => setSearchNameByType(e.currentTarget.value)}/>
+                <input type="text" value={searchNameByType}
+                       onChange={(e) => setSearchNameByType(e.currentTarget.value)}/>
                 <button onClick={searchByType} data-t='movie'>Movie</button>
                 <button onClick={searchByType} data-t='series'>Series</button>
                 <div>

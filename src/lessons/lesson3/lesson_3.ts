@@ -285,6 +285,46 @@ export default ()=>{};
 // Promise.resolve().then(() => {console.log('Promise')});
 // console.log('end');
 
-let prom = new Promise(res => res(10));
-let prom2 = Promise.resolve(10);
+// let prom = new Promise(res => res(10));
+// let prom2 = Promise.resolve(10);
 
+// console.log('Start');
+//
+// async function f() {
+//     console.log('Start function');
+//     let a = await new Promise((res, rej) => {
+//         setTimeout(() => res(100500),1000);
+//     });
+//     console.log('End function');
+//     return a;
+// }
+//
+// let result = f();
+// console.log(result);
+//
+// result.then(console.log);
+//
+// console.log('End');
+
+// let count = 0;
+// let resultA = null;
+//
+// async function f() {
+//     try {
+//         console.log('Start function');
+//         if (resultA === null) {
+//             let a = await Promise.resolve(10);
+//             resultA = a;
+//         }
+//         let b = await Promise.resolve(50);
+//         let c = await Promise.resolve(100);
+//         console.log('End function');
+//         return a;
+//     } catch (e) {
+//         if (errr = 'error' && count < 5) {
+//             count ++;
+//             f(sddfsd)
+//         }
+//         dlfbhdjfbn,dfnb
+//     }
+// }
