@@ -7,6 +7,259 @@ console.log('Lesson 6');
 // https://www.youtube.com/watch?v=BASquaxab_w
 // https://www.youtube.com/watch?v=uLY9GXGMXaA
 
+
+// function Test(name, age) {
+//     this.name = name;
+//     this.age = age;
+//     //this.sayName = function() { console.log(this.name)};
+// }
+//
+// Test.prototype.sayName = function() { console.log(this.name)};
+//
+// let person = new Test ('Evgen', 33);
+// console.log(person);
+
+//console.dir(function (){});
+//console.dir(class {});
+
+// class Test {
+//     name: string;
+//     age: number;
+//     //sayName: Function;
+//     bindedSayName: Function;
+//
+//     constructor(name: string, age: number) {
+//         this.name = name;
+//         this.age = age;
+//         //this.sayName = function() { console.log(this.name)};
+//         this.bindedSayName = this.sayName.bind(this);
+//     }
+//
+//     sayName() {
+//         console.log(this.name)
+//     }
+//
+//     sayBye = () => {
+//         console.log(this.age);
+//     }
+//
+// }
+//
+// //@ts-ignore
+// //Test.prototype.sayName = function() { console.log(this.name)};
+//
+// let person =  new Test ('Evgen', 33);
+// console.log(person)
+
+// interface ITest {
+//     name: string;
+//     age: number;
+//     sayName: Function
+// }
+//
+// interface ITest2 {
+//     name: string;
+//     sayYo: Function;
+// }
+//
+// class Test implements ITest, ITest2 {
+//     name: string;
+//     age: number;
+//
+//     constructor(name: string, age: number) {
+//         this.name = name;
+//         this.age = age;
+//     }
+//
+//     sayName() {
+//         console.log(`My name is - ${this.name}`);
+//     }
+//
+//     sayBye = () => {}
+//
+//     sayYo() {}
+// }
+
+//
+// interface IPerson extends ITest, ITest2 {
+//     city : string;
+//     sayBla: Function;
+// }
+//
+// class Person extends Test implements IPerson {
+//     city: string;
+//
+//     constructor(name: string, age: number, city: string) {
+//         super(name, age);
+//         this.city = city;
+//     }
+//
+//     sayBla() {}
+//
+//     sayName() {
+//         console.log('Yo yo yo');
+//         super.sayName();
+//     }
+// }
+//
+// let somePerson = new Person('Hanna', 25, 'Minsk');
+//
+// console.log(somePerson)
+//
+// somePerson.sayName()
+
+
+// class Helper {
+//     sayName() {}
+//     sayBye() {}
+// }
+//
+//
+// class superHelper extends Helper {
+//     sayBla() {}
+// }
+//
+// let testObj = new superHelper();
+//
+// console.log(testObj);
+
+
+// class Helper {
+//     name: string;
+//     constructor(name: string) {
+//         this.name = name;
+//     }
+//     sayName() {}
+//     sayBye() {}
+// }
+//
+//
+// class superHelper extends Helper {
+//
+//     constructor(name: string) {
+//         super(name);
+//     }
+//
+//     sayBla(n: string) {}
+//
+// }
+//
+// let testObj = new superHelper('Evgen');
+//
+// console.log(testObj);
+
+
+// class Test {
+//     name: string;
+//
+//     static staticParam = 10;
+//
+//     constructor(name: string) {
+//         this.name = name;
+//     }
+//
+//     sayName() {
+//         console.log(this.name)
+//     };
+//
+//     static someStaticMethod() {
+//         console.log(this.staticParam);
+//         console.log(this.staticParam);
+//
+//         return 'TEst';
+//     }
+//
+// }
+//
+// class Test2 extends Test {
+//     static staticParam = 50;
+//
+//     static someStaticMethod() {
+//         return 'SuperTEst';
+//     }
+// }
+//
+// let testObj = new Test2('cbvdnv');
+//
+// console.log(testObj);
+// console.log(Test2.staticParam)
+// //console.log(Test2.someStaticMethod())
+// console.dir(Test2);
+
+// interface IPerson {
+//     name: string;
+//     age: number;
+//     sayName: Function;
+// }
+//
+// class Person implements IPerson {
+//
+//     private count = 10;
+//
+//     constructor(public name: string, public age: number) { }
+//
+//     sayName() {
+//         console.log(this.name);
+//     }
+// }
+//
+// let evgenObj = new Person('Evgen', 33);
+// console.log(evgenObj);
+// // @ts-ignore
+// console.log(evgenObj.count);
+// //evgenObj.sayName();
+
+
+// class Test {
+//     #testParam = 10;
+//
+//     showPrivateParam() {
+//         console.log(this.#testParam);
+//     }
+// }
+//
+// let obj = new Test();
+// //obj.showPrivateParam();
+// console.log(obj.#testParam);
+
+
+
+
+interface IPerson {
+    name: string;
+    age: number;
+    sayName: Function;
+}
+
+class Person implements IPerson {
+
+    private count = 0;
+
+    constructor(public name: string, public age: number) { }
+
+    get innerCount() {
+        return this.count;
+    }
+
+    set innerCount(value) {
+        this.count = value * 10;
+    }
+
+    sayName() {
+        console.log(this.name);
+    }
+}
+
+let obj = new Person('E', 3);
+console.log(obj);
+obj.innerCount = 50;
+console.log(obj.innerCount);
+
+
+
+
+
+
 // Task 01
 // Создайте структуру с именем student, содержащую поля: имя и фамилия, номер группы, успеваемость (массив из пяти элементов).
 // Создать массив из десяти элементов такого типа, упорядочить записи по возрастанию среднего балла.
