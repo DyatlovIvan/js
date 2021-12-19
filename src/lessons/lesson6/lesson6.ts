@@ -1,3 +1,5 @@
+import {log} from "util";
+
 console.log('Lesson 6');
 
 // Class
@@ -257,13 +259,103 @@ console.log(obj.innerCount);
 
 
 
+interface IVehicle{
+    isStartEngine:boolean;
+    isMoving:boolean;
+   // speed:number;
+    startEngine: ()=>void;
+    stopEngine: ()=>void;
+    startMoving: (maxSpeed?:number)=>void;
+    stopMoving: ()=>void;
+}
 
+class Vehicle implements IVehicle{
+    isStartEngine:boolean;
+    isMoving:boolean;
+    speed:number;
+    constructor() {
+        this.isStartEngine = false;
+        this.isMoving =false;
+        this.speed = 0
+    }
+    startEngine(){
+        if(this.isStartEngine){
+            console.log('Are u sure? Engine is working now!')
+        }else{
+            this.isStartEngine = true;
+            console.log('engine is working!');
+        }
+    }
+    stopEngine(){
+        if(!this.isStartEngine){
+            console.log('Hmm...engine is stoped')
+        }else if(this.isMoving){
+            console.log('It is not goot idea to spot engine while moving!')}
+        else{
+            this.isStartEngine = false
+        }
+    }
+    startMoving(maxSpeed:number=150){
+        if(!this.isStartEngine){
+            console.log('Cannot move')
+        }else if (this.isMoving){
+            console.log('Cannot move')
+        } else{
+            this.isMoving = true;
+            let i = 1;
+            while (this.speed<=maxSpeed){
+                setTimeout((speed)=>{
+                    if(speed>120){
+                        console.log(`Whe speed ${speed}! We are moving too fast!`)
+                    }else{
+                        console.log(`Our speed ${speed}`)
+                    }
+                },i*1000,this.speed)
+                this.speed +=15;
+                i++;
+            }
+            this.speed = maxSpeed;
+            setTimeout(()=>console.log(`The speed is ${this.speed}!!! We are going to die`),i*1000)
+        }
+    }
+    stopMoving(){
+        if(this.speed===0){
+            console.log('We are mot moving!')
+        }else{
+            let i =1;
+            while (this.speed>0){
+                setTimeout(speed=>{
+                    if (speed>40){
+                        console.log(`Please stop! Our speed is ${speed} We are won't to die`)
+                    }else{
+                        console.log(`speed is ${speed}`)
+                    }
+                },i*1000,this.speed)
+                this.speed -=15;
+                i++;
+            }
+            setTimeout(()=>{
+                console.log(`Thw speed is ${this.speed}.We are arrived`)
+            },i*1000)
+            this.isMoving = false;
+        }
+    }
+    getStatus(){
+        console.log(this.isStartEngine)
+    }
+}
 
+const vehicle = new Vehicle();
+//@ts-ignore
+window.vehicle = vehicle
 
 // Task 01
 // Создайте структуру с именем student, содержащую поля: имя и фамилия, номер группы, успеваемость (массив из пяти элементов).
 // Создать массив из десяти элементов такого типа, упорядочить записи по возрастанию среднего балла.
 // Добавить возможность вывода фамилий и номеров групп студентов, имеющих оценки, равные только 4 или 5.
+
+
+
 
 // Task 02
 // Создать класс с двумя переменными. Добавить конструктор с входными параметрами и инициализирующий члены класса по умолчанию.
