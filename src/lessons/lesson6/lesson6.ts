@@ -349,6 +349,33 @@ const vehicle = new Vehicle();
 //@ts-ignore
 window.vehicle = vehicle
 
+class Motorbike extends Vehicle{
+    burnOut(){
+        if(!this.isStartEngine){
+            console.log('Start engine bro!')
+        }else{
+            console.log('Zoom')
+        }
+    }
+    startMoving() {
+        super.startMoving(200);
+    }
+}
+
+class Car extends Vehicle{
+    startMoving() {
+        super.startMoving(140);
+    }
+}
+const bike = new Motorbike
+bike.startEngine();
+bike.burnOut();
+bike.startMoving()
+
+const car = new Car
+car.startEngine();
+car.startMoving()
+
 // Task 01
 // Создайте структуру с именем student, содержащую поля: имя и фамилия, номер группы, успеваемость (массив из пяти элементов).
 // Создать массив из десяти элементов такого типа, упорядочить записи по возрастанию среднего балла.
