@@ -1,4 +1,5 @@
-console.log('Lesson 7');
+import './lesson_7';
+//console.log('Lesson 7');
 
 // __Proto__
 // https://learn.javascript.ru/prototype-inheritance
